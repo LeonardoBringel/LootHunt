@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'routes.dart';
+
 void main() {
   runApp(const LootHunt());
 }
 
 class LootHunt extends StatelessWidget {
   const LootHunt({Key? key}) : super(key: key);
-
-  get routes => null;
 
   @override
   Widget build(BuildContext context) {

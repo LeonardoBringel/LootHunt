@@ -1,3 +1,6 @@
+# API sensitive data
+lib/services/gamerpower_secrets.dart
+
 # Flutter folders
 android/
 ios/

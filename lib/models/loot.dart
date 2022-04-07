@@ -1,20 +1,20 @@
 class Loot {
   final String title;
-  final String worth;
+  final String price;
   final String thumbnail;
   final String description;
   final String instructions;
-  final String endDate;
+  final String date;
   final String type;
   final String platforms;
 
   const Loot({
     required this.title,
-    required this.worth,
+    required this.price,
     required this.thumbnail,
     required this.description,
     required this.instructions,
-    required this.endDate,
+    required this.date,
     required this.type,
     required this.platforms,
   });
@@ -22,11 +22,11 @@ class Loot {
   factory Loot.fromJson(Map<String, dynamic> json) {
     return Loot(
       title: json['title'],
-      worth: json['worth'],
+      price: json['worth'],
       thumbnail: json['thumbnail'],
       description: json['description'],
       instructions: json['instructions'],
-      endDate: json['end_date'],
+      date: json['end_date'],
       type: json['type'],
       platforms: json['platforms'],
     );

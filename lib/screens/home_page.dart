@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/loot.dart';
 import '../services/gamerpower.dart';
-import 'loot_widget.dart';
+import '../components/loot_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -48,11 +48,7 @@ class CatalogWidget extends StatelessWidget {
             itemCount: loots!.length,
             itemBuilder: (context, index) {
               return LootWidget(
-                title: loots[index].title,
-                platforms: loots[index].platforms,
-                thumbnail: loots[index].thumbnail,
-                price: loots[index].price,
-                date: loots[index].date,
+                loot: loots[index],
               );
             },
           );

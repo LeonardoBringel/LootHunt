@@ -47,8 +47,17 @@ class CatalogWidget extends StatelessWidget {
           return ListView.builder(
             itemCount: loots!.length,
             itemBuilder: (context, index) {
-              return LootWidget(
-                loot: loots[index],
+              return InkWell(
+                child: LootWidget(
+                  loot: loots[index],
+                ),
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    'DescriptionPage',
+                    arguments: loots[index],
+                  );
+                },
               );
             },
           );

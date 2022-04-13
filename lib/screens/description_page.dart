@@ -24,10 +24,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Loot Saved!'),
+              content: Text('Loot added to favorites!'),
             ),
           );
-          Navigator.pop(context);
+          Navigator.pop(context, loot.id);
         },
       ),
     );

@@ -32,15 +32,22 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class CatalogWidget extends StatelessWidget {
+class CatalogWidget extends StatefulWidget {
   const CatalogWidget({Key? key, required this.futureLoot}) : super(key: key);
 
   final Future<List<Loot>> futureLoot;
 
   @override
+  State<CatalogWidget> createState() => _CatalogWidgetState();
+}
+
+class _CatalogWidgetState extends State<CatalogWidget> {
+  List<int> favoriteLoots = [];
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Loot>>(
-      future: futureLoot,
+      future: widget.futureLoot,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Loot>? loots = snapshot.data;
@@ -51,12 +58,15 @@ class CatalogWidget extends StatelessWidget {
                 child: LootWidget(
                   loot: loots[index],
                 ),
-                onTap: () {
-                  Navigator.pushNamed(
+                onTap: () async {
+                  final result = await Navigator.pushNamed(
                     context,
                     'Description',
                     arguments: loots[index],
                   );
+                  if (result != null) {
+                    favoriteLoots.add(int.parse(result.toString()));
+                  }
                 },
               );
             },

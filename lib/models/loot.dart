@@ -1,4 +1,5 @@
 class Loot {
+  final int id;
   final String title;
   final String price;
   final String thumbnail;
@@ -9,6 +10,7 @@ class Loot {
   final String platforms;
 
   const Loot({
+    required this.id,
     required this.title,
     required this.price,
     required this.thumbnail,
@@ -21,6 +23,7 @@ class Loot {
 
   factory Loot.fromJson(Map<String, dynamic> json) {
     return Loot(
+      id: json['id'],
       title: json['title'],
       price: json['worth'],
       thumbnail: json['thumbnail'],

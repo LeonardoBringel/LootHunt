@@ -54,7 +54,7 @@ class CatalogWidget extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    'DescriptionPage',
+                    'Description',
                     arguments: loots[index],
                   );
                 },

@@ -4,34 +4,26 @@ import '../models/loot.dart';
 import '../services/gamerpower.dart';
 import '../components/loot_widget.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class FavoritePage extends StatefulWidget {
+  const FavoritePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<FavoritePage> createState() => _FavoritePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _FavoritePageState extends State<FavoritePage> {
   List<int> favoriteLoots = [];
 
   @override
   Widget build(BuildContext context) {
+    favoriteLoots = ModalRoute.of(context)!.settings.arguments as List<int>;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Loot Hunt'),
+        title: const Text('Favorite Loots'),
         centerTitle: true,
       ),
       body: CatalogWidget(favoriteLoots),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.favorite),
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            'Favorite',
-            arguments: favoriteLoots,
-          );
-        },
-      ),
     );
   }
 }
@@ -62,22 +54,25 @@ class _CatalogWidgetState extends State<CatalogWidget> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Loot>? loots = snapshot.data;
+          List<Loot> savedLoots = [];
+          for (Loot loot in loots!) {
+            if (widget.favoriteLoots.contains(loot.id)) {
+              savedLoots.add(loot);
+            }
+          }
           return ListView.builder(
-            itemCount: loots!.length,
+            itemCount: savedLoots.length,
             itemBuilder: (context, index) {
               return InkWell(
                 child: LootWidget(
-                  loot: loots[index],
+                  loot: savedLoots[index],
                 ),
-                onTap: () async {
-                  final result = await Navigator.pushNamed(
+                onTap: () {
+                  Navigator.pushNamed(
                     context,
                     'Description',
-                    arguments: loots[index],
+                    arguments: savedLoots[index],
                   );
-                  if (result != null) {
-                    widget.favoriteLoots.add(int.parse(result.toString()));
-                  }
                 },
               );
             },

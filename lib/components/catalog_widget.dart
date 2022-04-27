@@ -61,7 +61,13 @@ class _CatalogWidgetState extends State<CatalogWidget> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const Center(
+          child: SizedBox(
+            child: CircularProgressIndicator(strokeWidth: 8),
+            height: 100,
+            width: 100,
+          ),
+        );
       },
     );
   }

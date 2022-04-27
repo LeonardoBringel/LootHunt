@@ -20,15 +20,54 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: CatalogWidget(favoriteLoots, filter: false),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.favorite),
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            'Favorite',
-            arguments: favoriteLoots,
-          );
-        },
+      drawer: MenuDrawerWidget(favoriteLoots: favoriteLoots),
+    );
+  }
+}
+
+class MenuDrawerWidget extends StatelessWidget {
+  const MenuDrawerWidget({
+    Key? key,
+    required this.favoriteLoots,
+  }) : super(key: key);
+
+  final List<int> favoriteLoots;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            child: Row(
+              children: const [
+                FlutterLogo(),
+                Text(
+                  'Loot Hunt',
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ListTile(
+            title: const Text(
+              'Favorites',
+              style: TextStyle(
+                fontSize: 24,
+              ),
+            ),
+            leading: const Icon(Icons.favorite),
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                'Favorite',
+                arguments: favoriteLoots,
+              );
+            },
+          ),
+        ],
       ),
     );
   }

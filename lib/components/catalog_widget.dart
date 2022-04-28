@@ -36,7 +36,7 @@ class _CatalogWidgetState extends State<CatalogWidget> {
         if (snapshot.hasData) {
           List<Loot>? loots = snapshot.data;
           if (widget.filter) {
-            loots = filterLoots(loots!);
+            loots = _filterLoots(loots!);
           }
           return ListView.builder(
             itemCount: loots?.length,
@@ -72,7 +72,7 @@ class _CatalogWidgetState extends State<CatalogWidget> {
     );
   }
 
-  List<Loot> filterLoots(List<Loot> loots) {
+  List<Loot> _filterLoots(List<Loot> loots) {
     List<Loot> filteredLoots = [];
     for (Loot loot in loots) {
       if (widget.filterIds.contains(loot.id)) {

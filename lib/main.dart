@@ -14,7 +14,7 @@ class LootHuntApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Loot Hunt',
-      initialRoute: 'Home',
+      initialRoute: 'Login',
       routes: routes,
       theme: ThemeData.dark(),
     );

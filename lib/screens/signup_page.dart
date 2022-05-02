@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../components/login_text_field_widget.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +36,13 @@ class _LoginPageState extends State<LoginPage> {
               controller: passwordController,
               isPassword: true,
             ),
-            const _SigninButtonWidget(),
-            const _LoginButtonWidget(),
+            LoginTextFieldWidget(
+              label: 'Email',
+              controller: emailController,
+              isPassword: false,
+            ),
+            const _ConfirmButtonWidget(),
+            const _CancelButtonWidget(),
           ],
         ),
       ),
@@ -44,17 +50,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class _SigninButtonWidget extends StatelessWidget {
-  const _SigninButtonWidget({Key? key}) : super(key: key);
+class _ConfirmButtonWidget extends StatelessWidget {
+  const _ConfirmButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20),
-      child: TextButton(
-        child: const Text('Sign in'),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Signup'),
-        style: TextButton.styleFrom(
+      padding: const EdgeInsets.only(top: 100),
+      child: ElevatedButton(
+        child: const Text('Confirm'),
+        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
+        style: ElevatedButton.styleFrom(
           textStyle: const TextStyle(fontSize: 24),
         ),
       ),
@@ -62,16 +68,16 @@ class _SigninButtonWidget extends StatelessWidget {
   }
 }
 
-class _LoginButtonWidget extends StatelessWidget {
-  const _LoginButtonWidget({Key? key}) : super(key: key);
+class _CancelButtonWidget extends StatelessWidget {
+  const _CancelButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 200),
+      padding: const EdgeInsets.only(top: 20),
       child: ElevatedButton(
-        child: const Text('Login'),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Home'),
+        child: const Text('Cancel'),
+        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
         style: ElevatedButton.styleFrom(
           textStyle: const TextStyle(fontSize: 24),
         ),

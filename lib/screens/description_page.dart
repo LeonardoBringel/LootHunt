@@ -18,7 +18,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         title: const Text('Loot Hunt'),
         centerTitle: true,
       ),
-      body: DescriptionWidget(loot: loot),
+      body: _DescriptionWidget(loot: loot),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.favorite),
         onPressed: () {
@@ -34,8 +34,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
   }
 }
 
-class DescriptionWidget extends StatelessWidget {
-  const DescriptionWidget({Key? key, required this.loot}) : super(key: key);
+class _DescriptionWidget extends StatelessWidget {
+  const _DescriptionWidget({Key? key, required this.loot}) : super(key: key);
 
   final Loot loot;
 

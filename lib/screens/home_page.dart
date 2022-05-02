@@ -20,13 +20,13 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: CatalogWidget(favoriteLoots, filter: false),
-      drawer: MenuDrawerWidget(favoriteLoots: favoriteLoots),
+      drawer: _MenuDrawerWidget(favoriteLoots: favoriteLoots),
     );
   }
 }
 
-class MenuDrawerWidget extends StatelessWidget {
-  const MenuDrawerWidget({
+class _MenuDrawerWidget extends StatelessWidget {
+  const _MenuDrawerWidget({
     Key? key,
     required this.favoriteLoots,
   }) : super(key: key);

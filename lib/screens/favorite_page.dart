@@ -15,10 +15,13 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     favoriteLoots = ModalRoute.of(context)!.settings.arguments as List<int>;
-
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Loots'),
+        title: Text(
+          'Favorite Loots',
+          style: theme.textTheme.headline4,
+        ),
         centerTitle: true,
       ),
       body: CatalogWidget(favoriteLoots, filter: true),

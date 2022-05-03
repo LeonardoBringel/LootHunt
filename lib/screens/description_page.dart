@@ -12,10 +12,14 @@ class DescriptionPage extends StatefulWidget {
 class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     Loot loot = ModalRoute.of(context)!.settings.arguments as Loot;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Loot Hunt'),
+        title: Text(
+          'Loot Hunt',
+          style: theme.textTheme.headline4,
+        ),
         centerTitle: true,
       ),
       body: _DescriptionWidget(loot: loot),
@@ -41,24 +45,43 @@ class _DescriptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Center(
       child: Column(
         children: [
-          Text(loot.title),
+          Text(
+            loot.title,
+            style: theme.textTheme.subtitle1,
+          ),
           Image.network(loot.thumbnail),
-          Text(loot.description),
+          Text(
+            loot.description,
+            style: theme.textTheme.bodyText1,
+          ),
           ElevatedButton(
-            child: const Text('Instructions'),
+            child: Text(
+              'Instructions',
+              style: theme.textTheme.button,
+            ),
             onPressed: () {
               showDialog(
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: const Text('Instructions'),
-                    content: Text(loot.instructions),
+                    title: Text(
+                      'Instructions',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    content: Text(
+                      loot.instructions,
+                      style: theme.textTheme.bodyText1,
+                    ),
                     actions: [
                       TextButton(
-                        child: const Text('Done!'),
+                        child: Text(
+                          'Done!',
+                          style: theme.textTheme.button,
+                        ),
                         onPressed: () {
                           Navigator.pop(context);
                         },

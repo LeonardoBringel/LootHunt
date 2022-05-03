@@ -14,9 +14,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Loot Hunt'),
+        title: Text(
+          'Loot Hunt',
+          style: theme.textTheme.headline4,
+        ),
         centerTitle: true,
       ),
       body: CatalogWidget(favoriteLoots, filter: false),
@@ -35,28 +39,25 @@ class _MenuDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Drawer(
       child: ListView(
         children: [
           DrawerHeader(
             child: Row(
-              children: const [
-                FlutterLogo(),
+              children: [
+                const FlutterLogo(),
                 Text(
                   'Loot Hunt',
-                  style: TextStyle(
-                    fontSize: 32,
-                  ),
+                  style: theme.textTheme.headline4,
                 ),
               ],
             ),
           ),
           ListTile(
-            title: const Text(
+            title: Text(
               'Favorites',
-              style: TextStyle(
-                fontSize: 24,
-              ),
+              style: theme.textTheme.subtitle2,
             ),
             leading: const Icon(Icons.favorite),
             onTap: () {

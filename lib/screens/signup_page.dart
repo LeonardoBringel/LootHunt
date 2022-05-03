@@ -16,6 +16,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
@@ -24,7 +25,10 @@ class _SignupPageState extends State<SignupPage> {
             Container(padding: const EdgeInsets.only(top: 30)),
             const FlutterLogo(size: 128),
             Container(padding: const EdgeInsets.only(top: 30)),
-            const Text('Loot Hunt', style: TextStyle(fontSize: 42)),
+            Text(
+              'Loot Hunt',
+              style: theme.textTheme.headline3,
+            ),
             Container(padding: const EdgeInsets.only(bottom: 60)),
             LoginTextFieldWidget(
               label: 'Username',
@@ -55,14 +59,15 @@ class _ConfirmButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.only(top: 100),
       child: ElevatedButton(
-        child: const Text('Confirm'),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
-        style: ElevatedButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 24),
+        child: Text(
+          'Confirm',
+          style: theme.textTheme.button,
         ),
+        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
       ),
     );
   }
@@ -73,14 +78,15 @@ class _CancelButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.only(top: 20),
       child: ElevatedButton(
-        child: const Text('Cancel'),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
-        style: ElevatedButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 24),
+        child: Text(
+          'Cancel',
+          style: theme.textTheme.button,
         ),
+        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
       ),
     );
   }

@@ -9,15 +9,16 @@ class LootWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.fromLTRB(40, 40, 40, 0),
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
         border: Border.all(
           width: 2.0,
-          color: Colors.yellow.shade700,
+          color: theme.colorScheme.secondary,
         ),
-        color: Colors.black54,
+        color: theme.colorScheme.tertiary,
         borderRadius: BorderRadius.circular(20),
       ),
       width: MediaQuery.of(context).size.width * 0.9,
@@ -26,26 +27,16 @@ class LootWidget extends StatelessWidget {
         children: [
           Text(
             loot.title,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.yellow.shade700,
-            ),
+            style: theme.textTheme.subtitle1,
           ),
           Image.network(loot.thumbnail),
           Text(
             loot.platforms,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.yellow.shade700,
-            ),
+            style: theme.textTheme.bodyText1,
           ),
           Text(
             'Was ' + loot.price + ' now is FREE until ' + loot.date,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.yellow.shade700,
-            ),
+            style: theme.textTheme.bodyText2,
           ),
         ],
       ),

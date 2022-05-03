@@ -15,6 +15,7 @@ class LoginTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: TextFormField(
@@ -23,11 +24,12 @@ class LoginTextFieldWidget extends StatelessWidget {
         ],
         obscureText: isPassword,
         controller: controller,
+        style: theme.textTheme.bodyText1,
         decoration: InputDecoration(
           labelText: label,
           hintText: label,
-          labelStyle: const TextStyle(fontSize: 24),
-          hintStyle: const TextStyle(fontSize: 18),
+          labelStyle: theme.textTheme.subtitle2,
+          hintStyle: theme.textTheme.bodyText1,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
           ),

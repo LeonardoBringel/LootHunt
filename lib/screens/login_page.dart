@@ -73,12 +73,16 @@ class _LoginButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.only(top: 200),
       child: ElevatedButton(
-        child: Text(
-          'Login',
-          style: theme.textTheme.button,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(size.width / 4, 0, size.width / 4, 0),
+          child: Text(
+            'Login',
+            style: theme.textTheme.button,
+          ),
         ),
         onPressed: () => Navigator.popAndPushNamed(context, 'Home'),
       ),

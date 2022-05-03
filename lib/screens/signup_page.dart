@@ -60,12 +60,16 @@ class _ConfirmButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.only(top: 100),
       child: ElevatedButton(
-        child: Text(
-          'Confirm',
-          style: theme.textTheme.button,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(size.width / 4, 0, size.width / 4, 0),
+          child: Text(
+            'Confirm',
+            style: theme.textTheme.button,
+          ),
         ),
         onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
       ),
@@ -79,12 +83,16 @@ class _CancelButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.only(top: 20),
       child: ElevatedButton(
-        child: Text(
-          'Cancel',
-          style: theme.textTheme.button,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(size.width / 4, 0, size.width / 4, 0),
+          child: Text(
+            'Cancel',
+            style: theme.textTheme.button,
+          ),
         ),
         onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
       ),

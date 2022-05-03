@@ -6,14 +6,14 @@ ThemeData lootHuntTheme() {
   const rajah = Color(0xFFFFBA58);
   const black = Color(0x8A000000);
 
-  ColorScheme colorScheme = const ColorScheme.dark().copyWith(
+  ColorScheme _colorScheme = const ColorScheme.dark().copyWith(
     primary: mustard,
     secondary: rajah,
     background: eerieBlack,
     tertiary: black,
   );
 
-  TextTheme textTheme = const TextTheme(
+  TextTheme _textTheme = const TextTheme(
     headline3: TextStyle(
       fontSize: 48,
       color: rajah,
@@ -48,9 +48,9 @@ ThemeData lootHuntTheme() {
   );
 
   return ThemeData(
-    colorScheme: colorScheme,
-    scaffoldBackgroundColor: colorScheme.background,
+    colorScheme: _colorScheme,
+    scaffoldBackgroundColor: _colorScheme.background,
     fontFamily: 'Bebas Neue',
-    textTheme: textTheme,
+    textTheme: _textTheme,
   );
 }

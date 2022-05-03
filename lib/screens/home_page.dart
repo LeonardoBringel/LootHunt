@@ -41,30 +41,71 @@ class _MenuDrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Drawer(
-      child: ListView(
+      backgroundColor: theme.colorScheme.background,
+      child: Column(
         children: [
           DrawerHeader(
-            child: Row(
-              children: [
-                const FlutterLogo(),
-                Text(
-                  'Loot Hunt',
-                  style: theme.textTheme.headline4,
-                ),
-              ],
+            child: Center(
+              child: Column(
+                children: [
+                  const FlutterLogo(size: 64),
+                  Text(
+                    'Loot Hunt',
+                    style: theme.textTheme.headline4,
+                  ),
+                ],
+              ),
             ),
           ),
           ListTile(
+            visualDensity: const VisualDensity(vertical: 3),
             title: Text(
               'Favorites',
               style: theme.textTheme.subtitle2,
             ),
-            leading: const Icon(Icons.favorite),
+            leading: Icon(
+              Icons.favorite,
+              color: theme.colorScheme.secondary,
+            ),
             onTap: () {
               Navigator.pushNamed(
                 context,
                 'Favorite',
                 arguments: favoriteLoots,
+              );
+            },
+          ),
+          ListTile(
+            visualDensity: const VisualDensity(vertical: 3),
+            title: Text(
+              'About',
+              style: theme.textTheme.subtitle2,
+            ),
+            leading: Icon(
+              Icons.info_outline,
+              color: theme.colorScheme.secondary,
+            ),
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                'About',
+              );
+            },
+          ),
+          ListTile(
+            visualDensity: const VisualDensity(vertical: 3),
+            title: Text(
+              'Logout',
+              style: theme.textTheme.subtitle2,
+            ),
+            leading: Icon(
+              Icons.exit_to_app,
+              color: theme.colorScheme.secondary,
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(
+                context,
+                'Login',
               );
             },
           ),

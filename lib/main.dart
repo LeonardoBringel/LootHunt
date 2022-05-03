@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'theme/loot_hunt_theme.dart';
 import 'routes.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class LootHuntApp extends StatelessWidget {
       title: 'Loot Hunt',
       initialRoute: 'Login',
       routes: routes,
-      theme: ThemeData.dark(),
+      theme: lootHuntTheme(),
     );
   }
 }

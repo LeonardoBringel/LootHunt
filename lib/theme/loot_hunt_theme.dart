@@ -14,6 +14,10 @@ ThemeData lootHuntTheme() {
   );
 
   TextTheme textTheme = const TextTheme(
+    headline3: TextStyle(
+      fontSize: 48,
+      color: rajah,
+    ),
     headline4: TextStyle(
       fontSize: 34,
       color: rajah,
@@ -35,6 +39,11 @@ ThemeData lootHuntTheme() {
       fontSize: 16,
       color: mustard,
       fontStyle: FontStyle.italic,
+    ),
+    button: TextStyle(
+      fontSize: 24,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
     ),
   );
 

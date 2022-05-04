@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/about_page.dart';
 import 'screens/description_page.dart';
 import 'screens/favorite_page.dart';
 import 'screens/home_page.dart';
@@ -12,4 +13,5 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   'Favorite': (context) => const FavoritePage(),
   'Login': (context) => const LoginPage(),
   'Signup': (context) => const SignupPage(),
+  'About': (contex) => const AboutPage(),
 };

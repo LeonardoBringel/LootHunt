@@ -92,6 +92,36 @@ class _AboutWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(20),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2.0,
+                    color: theme.colorScheme.secondary,
+                  ),
+                  color: theme.colorScheme.tertiary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Bebas Neue',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    const Divider(),
+                    Text(
+                      // ignore: prefer_adjacent_string_concatenation
+                      'These font is lincensed under ' +
+                          'SIL Open Font License, more information can be ' +
+                          'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL',
+                      style: theme.textTheme.bodyText1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: Text(
                 'Delevoped by https://github.com/LeonardoBringel',
                 style: theme.textTheme.bodyText2,

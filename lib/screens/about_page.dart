@@ -62,6 +62,36 @@ class _AboutWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(20),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2.0,
+                    color: theme.colorScheme.secondary,
+                  ),
+                  color: theme.colorScheme.tertiary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Gamer Power API',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    const Divider(),
+                    Text(
+                      // ignore: prefer_adjacent_string_concatenation
+                      'https://www.gamerpower.com/ is the owner and providor of ' +
+                          'GamerPower API who allows its unrestricted use, ' +
+                          'as stated in https://www.gamerpower.com/api-read.',
+                      style: theme.textTheme.bodyText1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: Text(
                 'Delevoped by https://github.com/LeonardoBringel',
                 style: theme.textTheme.bodyText2,

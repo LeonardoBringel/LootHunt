@@ -23,7 +23,7 @@ class _SignupPageState extends State<SignupPage> {
         child: Column(
           children: [
             Container(padding: const EdgeInsets.only(top: 30)),
-            const FlutterLogo(size: 128),
+            Image.asset('assets/images/large_fantasy_parchment.png'),
             Container(padding: const EdgeInsets.only(top: 30)),
             Text(
               'Loot Hunt',

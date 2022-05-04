@@ -48,7 +48,7 @@ class _MenuDrawerWidget extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  const FlutterLogo(size: 64),
+                  Image.asset('assets/images/normal_fantasy_parchment.png'),
                   Text(
                     'Loot Hunt',
                     style: theme.textTheme.headline4,

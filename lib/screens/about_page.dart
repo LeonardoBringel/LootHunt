@@ -113,7 +113,37 @@ class _AboutWidget extends StatelessWidget {
                       // ignore: prefer_adjacent_string_concatenation
                       'These font is lincensed under ' +
                           'SIL Open Font License, more information can be ' +
-                          'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL',
+                          'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL.',
+                      style: theme.textTheme.bodyText1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2.0,
+                    color: theme.colorScheme.secondary,
+                  ),
+                  color: theme.colorScheme.tertiary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Fantasy Parchment',
+                      style: theme.textTheme.subtitle2,
+                    ),
+                    const Divider(),
+                    Text(
+                      // ignore: prefer_adjacent_string_concatenation
+                      'This icon was created by https://www.iconfinder.com/Chanut-is ' +
+                          'who made it available for use in accordance with ' +
+                          'https://creativecommons.org/licenses/by/3.0/.',
                       style: theme.textTheme.bodyText1,
                     ),
                   ],

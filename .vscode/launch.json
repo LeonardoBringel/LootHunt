@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "loot_hunt",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--web-renderer",
+                "html"
+            ],
+        },
+        {
+            "name": "loot_hunt (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--web-renderer",
+                "html"
+            ],
+        },
+        {
+            "name": "loot_hunt (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--web-renderer",
+                "html"
+            ],
+        }
+    ]
+}

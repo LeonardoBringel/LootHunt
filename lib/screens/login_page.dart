@@ -75,7 +75,7 @@ class _LoginButtonWidget extends StatelessWidget {
     final theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: const EdgeInsets.only(top: 200),
+      padding: EdgeInsets.only(top: size.height / 10),
       child: ElevatedButton(
         child: Padding(
           padding: EdgeInsets.fromLTRB(size.width / 4, 0, size.width / 4, 0),

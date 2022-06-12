@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/container_widget.dart';
+
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
 
@@ -39,116 +41,64 @@ class _AboutWidget extends StatelessWidget {
                 ).image,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2.0,
-                    color: theme.colorScheme.secondary,
-                  ),
-                  color: theme.colorScheme.tertiary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
+            ContainerWidget(
+              children: [
+                Text(
                   // ignore: prefer_adjacent_string_concatenation
                   'Loot Hunt is a mobile app that allows you to easily keep ' +
                       'track of free game promotions by consuming ' +
                       'the GamerPower API.',
                   style: theme.textTheme.bodyText1,
                 ),
-              ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2.0,
-                    color: theme.colorScheme.secondary,
-                  ),
-                  color: theme.colorScheme.tertiary,
-                  borderRadius: BorderRadius.circular(20),
+            ContainerWidget(
+              children: [
+                Text(
+                  'Gamer Power API',
+                  style: theme.textTheme.subtitle2,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Gamer Power API',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    const Divider(),
-                    Text(
-                      // ignore: prefer_adjacent_string_concatenation
-                      'https://www.gamerpower.com/ is the owner and providor of ' +
-                          'GamerPower API who allows its unrestricted use, ' +
-                          'as stated in https://www.gamerpower.com/api-read.',
-                      style: theme.textTheme.bodyText1,
-                    ),
-                  ],
+                const Divider(),
+                Text(
+                  // ignore: prefer_adjacent_string_concatenation
+                  'https://www.gamerpower.com/ is the owner and providor of ' +
+                      'GamerPower API who allows its unrestricted use, ' +
+                      'as stated in https://www.gamerpower.com/api-read.',
+                  style: theme.textTheme.bodyText1,
                 ),
-              ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2.0,
-                    color: theme.colorScheme.secondary,
-                  ),
-                  color: theme.colorScheme.tertiary,
-                  borderRadius: BorderRadius.circular(20),
+            ContainerWidget(
+              children: [
+                Text(
+                  'Bebas Neue',
+                  style: theme.textTheme.subtitle2,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Bebas Neue',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    const Divider(),
-                    Text(
-                      // ignore: prefer_adjacent_string_concatenation
-                      'These font is lincensed under ' +
-                          'SIL Open Font License, more information can be ' +
-                          'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL.',
-                      style: theme.textTheme.bodyText1,
-                    ),
-                  ],
+                const Divider(),
+                Text(
+                  // ignore: prefer_adjacent_string_concatenation
+                  'These font is lincensed under ' +
+                      'SIL Open Font License, more information can be ' +
+                      'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL.',
+                  style: theme.textTheme.bodyText1,
                 ),
-              ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2.0,
-                    color: theme.colorScheme.secondary,
-                  ),
-                  color: theme.colorScheme.tertiary,
-                  borderRadius: BorderRadius.circular(20),
+            ContainerWidget(
+              children: [
+                Text(
+                  'Fantasy Parchment',
+                  style: theme.textTheme.subtitle2,
                 ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Fantasy Parchment',
-                      style: theme.textTheme.subtitle2,
-                    ),
-                    const Divider(),
-                    Text(
-                      // ignore: prefer_adjacent_string_concatenation
-                      'This icon was created by https://www.iconfinder.com/Chanut-is ' +
-                          'who made it available for use in accordance with ' +
-                          'https://creativecommons.org/licenses/by/3.0/.',
-                      style: theme.textTheme.bodyText1,
-                    ),
-                  ],
+                const Divider(),
+                Text(
+                  // ignore: prefer_adjacent_string_concatenation
+                  'This icon was created by https://www.iconfinder.com/Chanut-is ' +
+                      'who made it available for use in accordance with ' +
+                      'https://creativecommons.org/licenses/by/3.0/.',
+                  style: theme.textTheme.bodyText1,
                 ),
-              ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(20),

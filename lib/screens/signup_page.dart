@@ -18,8 +18,18 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: GestureDetector(
+          child: const Icon(Icons.arrow_back, size: 32),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
+        padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
         child: Column(
           children: [
             Container(padding: const EdgeInsets.only(top: 30)),
@@ -46,7 +56,6 @@ class _SignupPageState extends State<SignupPage> {
               isPassword: false,
             ),
             const _ConfirmButtonWidget(),
-            const _CancelButtonWidget(),
           ],
         ),
       ),
@@ -71,7 +80,7 @@ class _ConfirmButtonWidget extends StatelessWidget {
             style: theme.textTheme.button,
           ),
         ),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
+        onPressed: () => Navigator.pop(context),
       ),
     );
   }

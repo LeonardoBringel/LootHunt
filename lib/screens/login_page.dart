@@ -61,7 +61,7 @@ class _SigninButtonWidget extends StatelessWidget {
           'Sign up',
           style: theme.textTheme.subtitle2,
         ),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Signup'),
+        onPressed: () => Navigator.pushNamed(context, 'Signup'),
       ),
     );
   }

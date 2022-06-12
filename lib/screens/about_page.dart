@@ -44,10 +44,9 @@ class _AboutWidget extends StatelessWidget {
             ContainerWidget(
               children: [
                 Text(
-                  // ignore: prefer_adjacent_string_concatenation
-                  'Loot Hunt is a mobile app that allows you to easily keep ' +
-                      'track of free game promotions by consuming ' +
-                      'the GamerPower API.',
+                  'Loot Hunt is a mobile app that allows you to easily keep '
+                  'track of free game promotions by consuming '
+                  'the GamerPower API.',
                   style: theme.textTheme.bodyText1,
                 ),
               ],
@@ -60,10 +59,9 @@ class _AboutWidget extends StatelessWidget {
                 ),
                 const Divider(),
                 Text(
-                  // ignore: prefer_adjacent_string_concatenation
-                  'https://www.gamerpower.com/ is the owner and providor of ' +
-                      'GamerPower API who allows its unrestricted use, ' +
-                      'as stated in https://www.gamerpower.com/api-read.',
+                  'https://www.gamerpower.com/ is the owner and providor of '
+                  'GamerPower API who allows its unrestricted use, '
+                  'as stated in https://www.gamerpower.com/api-read.',
                   style: theme.textTheme.bodyText1,
                 ),
               ],
@@ -76,10 +74,9 @@ class _AboutWidget extends StatelessWidget {
                 ),
                 const Divider(),
                 Text(
-                  // ignore: prefer_adjacent_string_concatenation
-                  'These font is lincensed under ' +
-                      'SIL Open Font License, more information can be ' +
-                      'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL.',
+                  'These font is lincensed under '
+                  'SIL Open Font License, more information can be '
+                  'found at https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL.',
                   style: theme.textTheme.bodyText1,
                 ),
               ],
@@ -92,10 +89,9 @@ class _AboutWidget extends StatelessWidget {
                 ),
                 const Divider(),
                 Text(
-                  // ignore: prefer_adjacent_string_concatenation
-                  'This icon was created by https://www.iconfinder.com/Chanut-is ' +
-                      'who made it available for use in accordance with ' +
-                      'https://creativecommons.org/licenses/by/3.0/.',
+                  'This icon was created by https://www.iconfinder.com/Chanut-is '
+                  'who made it available for use in accordance with '
+                  'https://creativecommons.org/licenses/by/3.0/.',
                   style: theme.textTheme.bodyText1,
                 ),
               ],

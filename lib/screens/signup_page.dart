@@ -85,26 +85,3 @@ class _ConfirmButtonWidget extends StatelessWidget {
     );
   }
 }
-
-class _CancelButtonWidget extends StatelessWidget {
-  const _CancelButtonWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.only(top: 20),
-      child: ElevatedButton(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(size.width / 4, 0, size.width / 4, 0),
-          child: Text(
-            'Cancel',
-            style: theme.textTheme.button,
-          ),
-        ),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Login'),
-      ),
-    );
-  }
-}

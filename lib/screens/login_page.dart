@@ -59,7 +59,8 @@ class _SignupButtonWidget extends StatelessWidget {
       child: TextButton(
         child: Text(
           'Sign up',
-          style: theme.textTheme.subtitle2,
+          style: theme.textTheme.subtitle2!
+              .copyWith(decoration: TextDecoration.underline),
         ),
         onPressed: () => Navigator.pushNamed(context, 'Signup'),
       ),

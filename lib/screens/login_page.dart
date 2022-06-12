@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: passwordController,
               isPassword: true,
             ),
-            const _SigninButtonWidget(),
+            const _SignupButtonWidget(),
             const _LoginButtonWidget(),
           ],
         ),
@@ -48,8 +48,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class _SigninButtonWidget extends StatelessWidget {
-  const _SigninButtonWidget({Key? key}) : super(key: key);
+class _SignupButtonWidget extends StatelessWidget {
+  const _SignupButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

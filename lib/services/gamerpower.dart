@@ -6,7 +6,7 @@ import '../models/loot.dart';
 import 'gamerpower_secrets.dart';
 
 Future<List<Loot>> fetchLoot() async {
-  String query = '?type=game&sort-by=popularity';
+  String query = '?type=game&sort-by=date';
 
   final response = await http.get(
     Uri.parse(url + query),

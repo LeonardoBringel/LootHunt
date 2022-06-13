@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/catalog_widget.dart';
@@ -102,7 +103,9 @@ class _MenuDrawerWidget extends StatelessWidget {
               Icons.exit_to_app,
               color: theme.colorScheme.secondary,
             ),
-            onTap: () {
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+
               Navigator.popAndPushNamed(
                 context,
                 'Login',

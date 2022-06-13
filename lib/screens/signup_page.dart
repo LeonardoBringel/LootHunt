@@ -13,8 +13,8 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +48,14 @@ class _SignupPageState extends State<SignupPage> {
               isPassword: false,
             ),
             LoginTextFieldWidget(
-              label: 'Password',
-              controller: passwordController,
-              isPassword: true,
-            ),
-            LoginTextFieldWidget(
               label: 'Email',
               controller: emailController,
               isPassword: false,
+            ),
+            LoginTextFieldWidget(
+              label: 'Password',
+              controller: passwordController,
+              isPassword: true,
             ),
             _ConfirmButtonWidget(
               usernameController: usernameController,
@@ -100,9 +100,7 @@ class _ConfirmButtonWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _signup(
-    BuildContext context,
-  ) async {
+  Future<void> _signup(BuildContext context) async {
     final theme = Theme.of(context);
 
     try {

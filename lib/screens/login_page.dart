@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -30,8 +30,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(padding: const EdgeInsets.only(bottom: 60)),
             LoginTextFieldWidget(
-              label: 'Username',
-              controller: usernameController,
+              label: 'Email',
+              controller: emailController,
               isPassword: false,
             ),
             LoginTextFieldWidget(

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/login_text_field_widget.dart';
@@ -55,7 +57,11 @@ class _SignupPageState extends State<SignupPage> {
               controller: emailController,
               isPassword: false,
             ),
-            const _ConfirmButtonWidget(),
+            _ConfirmButtonWidget(
+              usernameController: usernameController,
+              emailController: emailController,
+              passwordController: passwordController,
+            ),
           ],
         ),
       ),
@@ -64,7 +70,16 @@ class _SignupPageState extends State<SignupPage> {
 }
 
 class _ConfirmButtonWidget extends StatelessWidget {
-  const _ConfirmButtonWidget({Key? key}) : super(key: key);
+  const _ConfirmButtonWidget({
+    Key? key,
+    required this.usernameController,
+    required this.emailController,
+    required this.passwordController,
+  }) : super(key: key);
+
+  final TextEditingController usernameController;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +95,43 @@ class _ConfirmButtonWidget extends StatelessWidget {
             style: theme.textTheme.button,
           ),
         ),
-        onPressed: () => Navigator.pop(context),
+        onPressed: () async => _signup(context),
       ),
     );
+  }
+
+  Future<void> _signup(
+    BuildContext context,
+  ) async {
+    final theme = Theme.of(context);
+
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      )
+          .then(
+        (value) {
+          FirebaseFirestore.instance.collection('users').add(
+            {
+              'uid': value.user!.uid.toString(),
+              'username': usernameController.text
+            },
+          );
+          Navigator.pop(context);
+        },
+      );
+    } on FirebaseAuthException catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            error.code.toString(),
+            style: theme.textTheme.bodyText1,
+          ),
+          backgroundColor: theme.colorScheme.background,
+        ),
+      );
+    }
   }
 }

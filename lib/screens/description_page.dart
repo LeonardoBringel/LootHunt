@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/loot.dart';
@@ -25,17 +27,46 @@ class _DescriptionPageState extends State<DescriptionPage> {
       body: _DescriptionWidget(loot: loot),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.favorite),
-        onPressed: () {
+        onPressed: () async {
+          var snapshot = await FirebaseFirestore.instance
+              .collection('favorites')
+              .where(
+                'uid',
+                isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString(),
+              )
+              .where(
+                'loot_id',
+                isEqualTo: loot.id.toString(),
+              )
+              .get();
+
+          bool isFavorite = snapshot.docs.isNotEmpty;
+
+          if (isFavorite) {
+            for (var doc in snapshot.docs) {
+              await doc.reference.delete();
+            }
+          } else {
+            await FirebaseFirestore.instance.collection('favorites').add(
+              {
+                'uid': FirebaseAuth.instance.currentUser!.uid.toString(),
+                'loot_id': loot.id.toString(),
+              },
+            );
+          }
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Loot added to favorites!',
+                isFavorite
+                    ? 'Loot removed from favorites!'
+                    : 'Loot added to favorites!',
                 style: theme.textTheme.bodyText1,
               ),
               backgroundColor: theme.colorScheme.background,
             ),
           );
-          Navigator.pop(context, loot.id);
+          Navigator.pop(context);
         },
       ),
     );

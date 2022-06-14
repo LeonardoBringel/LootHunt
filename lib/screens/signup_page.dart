@@ -116,6 +116,12 @@ class _ConfirmButtonWidget extends StatelessWidget {
               'username': usernameController.text
             },
           );
+
+          snackbarMessage(
+            context,
+            'Your account has been successfully created!',
+          );
+
           Navigator.pop(context);
         },
       );

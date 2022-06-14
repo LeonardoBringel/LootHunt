@@ -43,7 +43,21 @@ class _CatalogWidgetState extends State<CatalogWidget> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<Loot>? loots = snapshot.data;
-                  return _listLoots(loots!);
+                  if (loots!.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                              'assets/images/large_fantasy_parchment.png'),
+                          const Text(
+                              'Oops! Looks like there\'s nothing here yet...'),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return _listLoots(loots);
+                  }
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }

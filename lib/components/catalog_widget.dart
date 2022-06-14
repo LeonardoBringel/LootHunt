@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../models/loot.dart';
 import '../services/gamerpower.dart';
 import 'loot_widget.dart';
+import 'progress_indicator_widget.dart';
 
 class CatalogWidget extends StatefulWidget {
   const CatalogWidget({
@@ -102,22 +103,5 @@ class _CatalogWidgetState extends State<CatalogWidget> {
       },
     );
     return filteredLoots;
-  }
-}
-
-class ProgressIndicatorWidget extends StatelessWidget {
-  const ProgressIndicatorWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: SizedBox(
-        child: CircularProgressIndicator(strokeWidth: 8),
-        height: 100,
-        width: 100,
-      ),
-    );
   }
 }

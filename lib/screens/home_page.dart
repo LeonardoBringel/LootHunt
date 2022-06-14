@@ -62,7 +62,7 @@ class _MenuDrawerWidget extends StatelessWidget {
               color: theme.colorScheme.secondary,
             ),
             onTap: () {
-              Navigator.pushNamed(context, 'Favorite');
+              Navigator.popAndPushNamed(context, 'Favorite');
             },
           ),
           ListTile(
@@ -76,10 +76,7 @@ class _MenuDrawerWidget extends StatelessWidget {
               color: theme.colorScheme.secondary,
             ),
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                'About',
-              );
+              Navigator.popAndPushNamed(context, 'About');
             },
           ),
           ListTile(
@@ -95,10 +92,8 @@ class _MenuDrawerWidget extends StatelessWidget {
             onTap: () async {
               await FirebaseAuth.instance.signOut();
 
-              Navigator.popAndPushNamed(
-                context,
-                'Login',
-              );
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'Login', (route) => false);
             },
           ),
         ],

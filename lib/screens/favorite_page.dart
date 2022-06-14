@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../components/catalog_widget.dart';
 
-class FavoritePage extends StatefulWidget {
+class FavoritePage extends StatelessWidget {
   const FavoritePage({Key? key}) : super(key: key);
 
-  @override
-  State<FavoritePage> createState() => _FavoritePageState();
-}
-
-class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

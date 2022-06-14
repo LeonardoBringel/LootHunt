@@ -10,11 +10,8 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  List<int> favoriteLoots = [];
-
   @override
   Widget build(BuildContext context) {
-    favoriteLoots = ModalRoute.of(context)!.settings.arguments as List<int>;
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +21,7 @@ class _FavoritePageState extends State<FavoritePage> {
         ),
         centerTitle: true,
       ),
-      body: CatalogWidget(favoriteLoots, filter: true),
+      body: const CatalogWidget(filter: true),
     );
   }
 }

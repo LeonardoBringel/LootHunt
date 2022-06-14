@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/login_text_field_widget.dart';
@@ -10,7 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -30,8 +32,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(padding: const EdgeInsets.only(bottom: 60)),
             LoginTextFieldWidget(
-              label: 'Username',
-              controller: usernameController,
+              label: 'Email',
+              controller: emailController,
               isPassword: false,
             ),
             LoginTextFieldWidget(
@@ -40,7 +42,10 @@ class _LoginPageState extends State<LoginPage> {
               isPassword: true,
             ),
             const _SignupButtonWidget(),
-            const _LoginButtonWidget(),
+            _LoginButtonWidget(
+              emailController: emailController,
+              passwordController: passwordController,
+            ),
           ],
         ),
       ),
@@ -69,7 +74,14 @@ class _SignupButtonWidget extends StatelessWidget {
 }
 
 class _LoginButtonWidget extends StatelessWidget {
-  const _LoginButtonWidget({Key? key}) : super(key: key);
+  const _LoginButtonWidget({
+    Key? key,
+    required this.emailController,
+    required this.passwordController,
+  }) : super(key: key);
+
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +97,53 @@ class _LoginButtonWidget extends StatelessWidget {
             style: theme.textTheme.button,
           ),
         ),
-        onPressed: () => Navigator.popAndPushNamed(context, 'Home'),
+        onPressed: () async => _login(context),
       ),
     );
+  }
+
+  Future<void> _login(BuildContext context) async {
+    final theme = Theme.of(context);
+
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      )
+          .then(
+        (value) async {
+          Navigator.popAndPushNamed(context, 'Home');
+
+          var snapshot = await FirebaseFirestore.instance
+              .collection('users')
+              .where(
+                'uid',
+                isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString(),
+              )
+              .get();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Welcome ' + snapshot.docs.first.data()['username'],
+                style: theme.textTheme.bodyText1,
+              ),
+              backgroundColor: theme.colorScheme.background,
+            ),
+          );
+        },
+      );
+    } on FirebaseAuthException catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            error.code.toString(),
+            style: theme.textTheme.bodyText1,
+          ),
+          backgroundColor: theme.colorScheme.background,
+        ),
+      );
+    }
   }
 }

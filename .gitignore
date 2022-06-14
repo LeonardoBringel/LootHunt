@@ -1,3 +1,9 @@
+# Firebase
+google-services.json
+firebase_app_id_file.json
+firebase_options.dart
+node_modules
+
 # API sensitive data
 lib/services/gamerpower_secrets.dart
 

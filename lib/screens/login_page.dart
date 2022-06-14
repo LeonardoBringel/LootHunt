@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/login_text_field_widget.dart';
+import '../components/snackbar_message.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -103,8 +104,6 @@ class _LoginButtonWidget extends StatelessWidget {
   }
 
   Future<void> _login(BuildContext context) async {
-    final theme = Theme.of(context);
-
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -123,26 +122,16 @@ class _LoginButtonWidget extends StatelessWidget {
               )
               .get();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Welcome ' + snapshot.docs.first.data()['username'],
-                style: theme.textTheme.bodyText1,
-              ),
-              backgroundColor: theme.colorScheme.background,
-            ),
+          snackbarMessage(
+            context,
+            'Welcome ' + snapshot.docs.first.data()['username'],
           );
         },
       );
     } on FirebaseAuthException catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            error.code.toString(),
-            style: theme.textTheme.bodyText1,
-          ),
-          backgroundColor: theme.colorScheme.background,
-        ),
+      snackbarMessage(
+        context,
+        error.code.toString(),
       );
     }
   }

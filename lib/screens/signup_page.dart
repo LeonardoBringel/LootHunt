@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/login_text_field_widget.dart';
+import '../components/snackbar_message.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -101,8 +102,6 @@ class _ConfirmButtonWidget extends StatelessWidget {
   }
 
   Future<void> _signup(BuildContext context) async {
-    final theme = Theme.of(context);
-
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -121,14 +120,9 @@ class _ConfirmButtonWidget extends StatelessWidget {
         },
       );
     } on FirebaseAuthException catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            error.code.toString(),
-            style: theme.textTheme.bodyText1,
-          ),
-          backgroundColor: theme.colorScheme.background,
-        ),
+      snackbarMessage(
+        context,
+        error.code.toString(),
       );
     }
   }

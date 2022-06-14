@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../components/snackbar_message.dart';
 import '../models/loot.dart';
 
 class DescriptionPage extends StatefulWidget {
@@ -55,17 +56,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
             );
           }
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                isFavorite
-                    ? 'Loot removed from favorites!'
-                    : 'Loot added to favorites!',
-                style: theme.textTheme.bodyText1,
-              ),
-              backgroundColor: theme.colorScheme.background,
-            ),
+          snackbarMessage(
+            context,
+            isFavorite
+                ? 'Loot removed from favorites!'
+                : 'Loot added to favorites!',
           );
+
           Navigator.pop(context);
         },
       ),

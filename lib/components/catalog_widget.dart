@@ -37,43 +37,27 @@ class _CatalogWidgetState extends State<CatalogWidget> {
           List<Loot>? loots = snapshot.data;
           if (widget.filter) {
             filteredFutureLoot = _filterLoots(loots!);
-          } else {
-            filteredFutureLoot = futureLoot;
-          }
-          return FutureBuilder<List<Loot>>(
-            future: filteredFutureLoot,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<Loot>? loots = snapshot.data;
-                return ListView.builder(
-                  itemCount: loots?.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      child: LootWidget(
-                        loot: loots![index],
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          'Description',
-                          arguments: loots[index],
-                        ).then((value) => setState(() {}));
-                      },
-                    );
-                  },
+            return FutureBuilder<List<Loot>>(
+              future: filteredFutureLoot,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Loot>? loots = snapshot.data;
+                  return _listLoots(loots!);
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+                return const Center(
+                  child: SizedBox(
+                    child: CircularProgressIndicator(strokeWidth: 8),
+                    height: 100,
+                    width: 100,
+                  ),
                 );
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-              return const Center(
-                child: SizedBox(
-                  child: CircularProgressIndicator(strokeWidth: 8),
-                  height: 100,
-                  width: 100,
-                ),
-              );
-            },
-          );
+              },
+            );
+          } else {
+            return _listLoots(loots!);
+          }
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
@@ -83,6 +67,26 @@ class _CatalogWidgetState extends State<CatalogWidget> {
             height: 100,
             width: 100,
           ),
+        );
+      },
+    );
+  }
+
+  ListView _listLoots(List<Loot> loots) {
+    return ListView.builder(
+      itemCount: loots.length,
+      itemBuilder: (context, index) {
+        return InkWell(
+          child: LootWidget(
+            loot: loots[index],
+          ),
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              'Description',
+              arguments: loots[index],
+            ).then((value) => setState(() {}));
+          },
         );
       },
     );

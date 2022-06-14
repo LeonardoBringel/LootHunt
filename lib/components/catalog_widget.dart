@@ -46,13 +46,7 @@ class _CatalogWidgetState extends State<CatalogWidget> {
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
-                return const Center(
-                  child: SizedBox(
-                    child: CircularProgressIndicator(strokeWidth: 8),
-                    height: 100,
-                    width: 100,
-                  ),
-                );
+                return const ProgressIndicatorWidget();
               },
             );
           } else {
@@ -61,13 +55,7 @@ class _CatalogWidgetState extends State<CatalogWidget> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const Center(
-          child: SizedBox(
-            child: CircularProgressIndicator(strokeWidth: 8),
-            height: 100,
-            width: 100,
-          ),
-        );
+        return const ProgressIndicatorWidget();
       },
     );
   }
@@ -114,5 +102,22 @@ class _CatalogWidgetState extends State<CatalogWidget> {
       },
     );
     return filteredLoots;
+  }
+}
+
+class ProgressIndicatorWidget extends StatelessWidget {
+  const ProgressIndicatorWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: SizedBox(
+        child: CircularProgressIndicator(strokeWidth: 8),
+        height: 100,
+        width: 100,
+      ),
+    );
   }
 }

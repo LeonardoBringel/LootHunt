@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -107,10 +108,32 @@ class _LoginButtonWidget extends StatelessWidget {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text,
-          )
-          .then((value) => Navigator.popAndPushNamed(context, 'Home'));
+        email: emailController.text,
+        password: passwordController.text,
+      )
+          .then(
+        (value) async {
+          Navigator.popAndPushNamed(context, 'Home');
+
+          var snapshot = await FirebaseFirestore.instance
+              .collection('users')
+              .where(
+                'uid',
+                isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString(),
+              )
+              .get();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Welcome ' + snapshot.docs.first.data()['username'],
+                style: theme.textTheme.bodyText1,
+              ),
+              backgroundColor: theme.colorScheme.background,
+            ),
+          );
+        },
+      );
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

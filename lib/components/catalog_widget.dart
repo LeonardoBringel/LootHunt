@@ -1,18 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/loot.dart';
 import '../services/gamerpower.dart';
 import 'loot_widget.dart';
 
-// ignore: must_be_immutable
 class CatalogWidget extends StatefulWidget {
-  CatalogWidget(
-    this.filterIds, {
+  const CatalogWidget({
     required this.filter,
     Key? key,
   }) : super(key: key);
 
-  List<int> filterIds;
   final bool filter;
 
   @override
@@ -21,6 +20,7 @@ class CatalogWidget extends StatefulWidget {
 
 class _CatalogWidgetState extends State<CatalogWidget> {
   late Future<List<Loot>> futureLoot;
+  late Future<List<Loot>> filteredFutureLoot;
 
   @override
   void initState() {
@@ -36,25 +36,41 @@ class _CatalogWidgetState extends State<CatalogWidget> {
         if (snapshot.hasData) {
           List<Loot>? loots = snapshot.data;
           if (widget.filter) {
-            loots = _filterLoots(loots!);
+            filteredFutureLoot = _filterLoots(loots!);
+          } else {
+            filteredFutureLoot = futureLoot;
           }
-          return ListView.builder(
-            itemCount: loots?.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                child: LootWidget(
-                  loot: loots![index],
+          return FutureBuilder<List<Loot>>(
+            future: filteredFutureLoot,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<Loot>? loots = snapshot.data;
+                return ListView.builder(
+                  itemCount: loots?.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      child: LootWidget(
+                        loot: loots![index],
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          'Description',
+                          arguments: loots[index],
+                        ).then((value) => setState(() {}));
+                      },
+                    );
+                  },
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const Center(
+                child: SizedBox(
+                  child: CircularProgressIndicator(strokeWidth: 8),
+                  height: 100,
+                  width: 100,
                 ),
-                onTap: () async {
-                  final result = await Navigator.pushNamed(
-                    context,
-                    'Description',
-                    arguments: loots![index],
-                  );
-                  if (result != null) {
-                    widget.filterIds.add(int.parse(result.toString()));
-                  }
-                },
               );
             },
           );
@@ -72,13 +88,27 @@ class _CatalogWidgetState extends State<CatalogWidget> {
     );
   }
 
-  List<Loot> _filterLoots(List<Loot> loots) {
-    List<Loot> filteredLoots = [];
-    for (Loot loot in loots) {
-      if (widget.filterIds.contains(loot.id)) {
-        filteredLoots.add(loot);
-      }
-    }
+  Future<List<Loot>> _filterLoots(List<Loot> loots) async {
+    List<Loot>? filteredLoots = [];
+
+    await FirebaseFirestore.instance
+        .collection('favorites')
+        .where(
+          'uid',
+          isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString(),
+        )
+        .get()
+        .then(
+      (value) {
+        for (Loot loot in loots) {
+          for (var doc in value.docs) {
+            if (loot.id.toString() == doc['loot_id']) {
+              filteredLoots.add(loot);
+            }
+          }
+        }
+      },
+    );
     return filteredLoots;
   }
 }

@@ -11,8 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<int> favoriteLoots = [];
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -24,19 +22,14 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
-      body: CatalogWidget(favoriteLoots, filter: false),
-      drawer: _MenuDrawerWidget(favoriteLoots: favoriteLoots),
+      body: const CatalogWidget(filter: false),
+      drawer: const _MenuDrawerWidget(),
     );
   }
 }
 
 class _MenuDrawerWidget extends StatelessWidget {
-  const _MenuDrawerWidget({
-    Key? key,
-    required this.favoriteLoots,
-  }) : super(key: key);
-
-  final List<int> favoriteLoots;
+  const _MenuDrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +62,7 @@ class _MenuDrawerWidget extends StatelessWidget {
               color: theme.colorScheme.secondary,
             ),
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                'Favorite',
-                arguments: favoriteLoots,
-              );
+              Navigator.pushNamed(context, 'Favorite');
             },
           ),
           ListTile(

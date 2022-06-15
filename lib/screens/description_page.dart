@@ -5,14 +5,9 @@ import 'package:flutter/material.dart';
 import '../components/snackbar_message.dart';
 import '../models/loot.dart';
 
-class DescriptionPage extends StatefulWidget {
+class DescriptionPage extends StatelessWidget {
   const DescriptionPage({Key? key}) : super(key: key);
 
-  @override
-  State<DescriptionPage> createState() => _DescriptionPageState();
-}
-
-class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
